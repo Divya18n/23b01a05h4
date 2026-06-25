@@ -83,7 +83,19 @@ app.patch("/notifications/:id/read", async (req, res) => {
     return res.status(500).json({ error: err.message });
   }
 });
-
+// Root route
+app.get("/", (req, res) => {
+  res.json({ 
+    status: "ok", 
+    message: "Notification Backend is running",
+    version: "1.0.0",
+    endpoints: [
+      "GET /notifications",
+      "PATCH /notifications/:id/read",
+      "GET /health"
+    ]
+  });
+});
 // Health check
 app.get("/health", (req, res) => {
   res.json({ status: "ok", message: "Notification backend running" });
